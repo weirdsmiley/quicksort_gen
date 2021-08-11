@@ -27,6 +27,7 @@ fn quicksort(arr: &mut Vec<i64>, low: usize, high: usize) -> &Vec<i64> {
     arr
 }
 
+/// Sorts i64 elements in a vector.
 pub fn sort(arr: &mut Vec<i64>) -> &Vec<i64> {
     quicksort(arr, usize::MIN, arr.len())
 }
@@ -73,6 +74,8 @@ fn quicksort_gen<'a, T: Comparator + Copier>(
     arr
 }
 
+/// Sorts a vector of generic type, which must define a comparator and copy
+/// trait.
 pub fn sort_gen<'a, T: Comparator + Copier>(arr: &'a mut Vec<T>) -> &'a Vec<T> {
     quicksort_gen(arr, usize::MIN, arr.len())
 }
