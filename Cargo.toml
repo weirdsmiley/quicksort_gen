@@ -1,6 +1,6 @@
 [package]
 name = "quicksort_gen"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2018"
 authors = ["Manas <manas18244@iiitd.ac.in"]
 license = "MIT"
