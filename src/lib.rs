@@ -97,7 +97,10 @@ mod tests {
 
     impl Comparator for Node {
         fn compare(&self, other: &Self) -> Ordering {
-            if self.pid > other.pid || self.name > other.name {
+            if self.pid > other.pid {
+                return Ordering::Greater;
+            }
+            if self.pid == other.pid && self.name > other.name {
                 return Ordering::Greater;
             }
             return Ordering::Less;
@@ -118,7 +121,13 @@ mod tests {
         let mut rng = rand::thread_rng();
 
         let mut numbers: Vec<i64> = (0..25).map(|_| rng.gen_range(1..3001)).collect();
-        println!("{:?}", sort(&mut numbers));
+        sort(&mut numbers);
+
+        let mut elem = numbers[0];
+        for idx in 1..numbers.len() {
+            assert!(elem < numbers[idx]);
+            elem = numbers[idx];
+        }
     }
 
     #[test]
@@ -128,6 +137,13 @@ mod tests {
             Node::new(2, String::from("kobj")),
             Node::new(1, String::from("systemd")),
         ];
-        println!("{:?}", sort_gen(&mut nodes));
+        sort_gen(&mut nodes);
+
+        let mut elem = Node::copy(&nodes[0]);
+        for idx in 1..nodes.len() {
+            println!("{:?} {:?}", elem, nodes[idx]);
+            assert_eq!(Node::compare(&elem, &nodes[idx]), Ordering::Less);
+            elem = Node::copy(&nodes[idx]);
+        }
     }
 }
