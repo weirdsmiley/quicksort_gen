@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2018"
 authors = ["Manas <manas18244@iiitd.ac.in"]
 license = "MIT"
+repository = "https://github.com/weirdsmiley/quicksort_gen"
 description = "Generic implementation of quicksort algorithm"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
