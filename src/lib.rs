@@ -1,4 +1,3 @@
-#![allow(dead_code)]
 /// A generic quicksorting algorithm
 /// Here term 'generic' refers to any type of objects where a partial order can
 /// be established will be sorted.
@@ -28,7 +27,7 @@ fn quicksort(arr: &mut Vec<i64>, low: usize, high: usize) -> &Vec<i64> {
     arr
 }
 
-pub(crate) fn sort(arr: &mut Vec<i64>) -> &Vec<i64> {
+pub fn sort(arr: &mut Vec<i64>) -> &Vec<i64> {
     quicksort(arr, usize::MIN, arr.len())
 }
 
@@ -37,12 +36,12 @@ pub(crate) fn sort(arr: &mut Vec<i64>) -> &Vec<i64> {
 
 /// Defined a partially-ordered comparator to be used to compare objects while
 /// sorting.
-trait Comparator {
+pub trait Comparator {
     fn compare(&self, other: &Self) -> Ordering;
 }
 
 /// A cloning trait for moving objects when they are mutable.
-trait Copier {
+pub trait Copier {
     fn copy(&self) -> Self;
 }
 
@@ -74,7 +73,7 @@ fn quicksort_gen<'a, T: Comparator + Copier>(
     arr
 }
 
-pub(crate) fn sort_gen<'a, T: Comparator + Copier>(arr: &'a mut Vec<T>) -> &'a Vec<T> {
+pub fn sort_gen<'a, T: Comparator + Copier>(arr: &'a mut Vec<T>) -> &'a Vec<T> {
     quicksort_gen(arr, usize::MIN, arr.len())
 }
 
